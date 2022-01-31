@@ -30,11 +30,7 @@ namespace ConsoleApp1
 
 			public void Run()
 			{
-				foreach (var item in _tasks)
-				{
-					item.ShowQuestion();
-					item.AskAnswer();
-				}
+				
 			}
 
 			

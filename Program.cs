@@ -49,7 +49,7 @@ namespace ConsoleApp1
 				if (current == null)
 				{
 					Console.WriteLine("user not found");
-					current = users.Find(auth.dataInput());					//	make cycle!!!
+					current = users.Find(auth.dataInput());					//	TODO make cycle!!!
 				}
 				else
 				{
@@ -96,12 +96,14 @@ namespace ConsoleApp1
 			}
 			Console.WriteLine("well...");
 
-			tasks.Run();
+			
+			Task test = new Task();
+
+			test.ShowQuestion();
+
 
 
 			Console.ReadKey();
-
-
 		}
 	}
 }

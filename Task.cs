@@ -18,7 +18,18 @@ namespace ConsoleApp1
 			public int _correct;
 
 
-			public Task() { }
+			public Task() 
+			{
+				_theme = "testTheme";
+				_question = "testQ";
+				_answers = new string[4];
+				_answers[0] = "a1";
+				_answers[1] = "a2";
+				_answers[2] = "a3CORRECT";
+				_answers[3] = "a4";
+				_correct = 3;
+			}
+
 
 			public Task(string thm, string qstn, string[] answrs, /*int qCount,*/ int crct)
 			{
@@ -38,10 +49,22 @@ namespace ConsoleApp1
 				}
 			}
 			
-			public void AskAnswer()
+			public void CheckAnswer()
 			{
-				Console.Read();
+				
 			}
+			private bool answerIsCorrect(int answ, int trueAnsw)
+			{
+				if (answ == trueAnsw) return true;
+				else return false;
+			}
+			private bool answerInputIsCorrect(int answ)
+			{
+				if (answ >= 1 && answ <= 4)
+					return true;
+				else return false;
+			}
+
 
 		}
 	}
