@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication.cs" />
+    <Compile Include="example.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TasksCollection.cs" />

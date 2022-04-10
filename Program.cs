@@ -23,6 +23,8 @@ namespace ConsoleApp1
 			XmlSerializer userXmlFormat = new XmlSerializer(typeof(UsersCollection));
 			XmlSerializer taskXmlFormat = new XmlSerializer(typeof(TasksCollection));
 
+            bool authSuccess = false;
+
 			if (File.Exists("users.xml"))
 			{
 				try
@@ -38,30 +40,72 @@ namespace ConsoleApp1
 					Console.WriteLine("something went wrong 1");
 				}
 			}
+            else
+	        {
+                users.Add("admin","admin");
+                using(FileStream fStream = new FileStream("users.xml", FileMode.OpenOrCreate))
+			    {
+			    	userXmlFormat.Serialize(fStream, users);
+			    }
+                Console.WriteLine("users.xml created");
+	        }
 
 			Console.WriteLine("Users: " + users.Count());
 
 			User current = new User();
 			Authentication auth = new Authentication();
-			try
-			{
-				current = users.Find(auth.dataInput());
-				if (current == null)
-				{
-					Console.WriteLine("user not found");
-					current = users.Find(auth.dataInput());					//	TODO make cycle!!!
-				}
-				else
-				{
-					Console.WriteLine("login successful");
-					Console.WriteLine(current.info());
-				}
-				
-			}
-			catch
-			{
-				Console.WriteLine("something went wrong 2");
-			}
+			
+            while(!authSuccess)
+            {
+                try
+                {
+                    current = auth.dataInput();
+                    if(users.Find(current))
+                    {
+                        Console.WriteLine("User found, login successful.");
+                        authSuccess = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("User not found.");
+                    }
+
+                }
+                catch
+                {
+                    Console.WriteLine("How the fuck did you manage that?!");
+                }
+
+
+                //try                                                                                    //
+			    //{                                                                                      //
+			    //	current = users.Find(auth.dataInput());                                              //
+			    //	if (current == null)                                                                 //
+			    //	{                                                                                    //
+			    //		current = users.Find(auth.dataInput());                                          //
+                //                                                                                       //
+                //        if (true)                                                                      //
+	            //        {                                                                              //
+                //                                                                                       //
+	            //        }                                                                              // TODO: хрень, перед релизом удалить
+                //                                                                                       //
+			    //		Console.WriteLine("User not found!");			    	                         //
+                //    }                                                                                  //
+			    //	else                                                                                 //
+			    //	{                                                                                    //
+			    //		Console.WriteLine("login successful");                                           //
+			    //		Console.WriteLine(current.info());                                               //
+                //        authSuccess = true;                                                            //
+			    //	}                                                                                    //
+			    //	                                                                                     //
+			    //}                                                                                      //
+			    //catch                                                                                  //
+			    //{                                                                                      //
+			    //	Console.WriteLine("something went wrong 2");                                         //
+			    //}
+            }
+            
+            Console.WriteLine(current.info());
 			Console.WriteLine("Pess any key to continue");
 			Console.ReadKey();
 			Console.Clear();

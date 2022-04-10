@@ -9,7 +9,7 @@ namespace ConsoleApp1
 	public partial class Program
 	{
 		[Serializable]
-		public class UsersCollection
+		public class UsersCollection 
 		{
 			public UsersCollection()
 			{} 
@@ -34,18 +34,18 @@ namespace ConsoleApp1
 					Console.WriteLine(item.info());
 				}
 			}
-			public User Find(User user)
+			public bool Find(User user)
 			{
 				foreach (var item in _users)
 				{
 					if ((item._log == user._log) && (item._pswd == user._pswd))
 					{
-						return item;
+						return true;
 					}
 					
 				}
 
-				return null;
+				return false;
 			}
 		}
 	}
