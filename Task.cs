@@ -41,30 +41,49 @@ namespace ConsoleApp1
 			}
 			public void ShowQuestion()
 			{
-				Console.WriteLine(_theme);
+				Console.WriteLine("\n"+ _theme);
 				Console.WriteLine(_question);
 				foreach (var item in _answers)
 				{
 					Console.WriteLine(item);
 				}
+                Console.WriteLine("\n");
 			}
 			
-			public void CheckAnswer()
+			//public void CheckAnswer(User current)                         //
+			//{                                                             //
+            //    int answ = 1;                                             //
+            //    while (AnswerInputIsCorrect(answ))                        //
+            //    {                                                         //
+            //        answ = AskAnswer();                                   //
+            //        if (AnswerIsCorrect(answ))                            //
+            //        {                                                     // TODO: разобраться с этим
+            //            current._score++;                                 //
+            //            Console.WriteLine("Correct");                     //
+            //            break;                                            //
+            //        }                                                     //
+            //        else                                                  //
+            //        {                                                     //
+            //            Console.WriteLine("Wrong");                       //
+            //            break;                                            //
+            //        }                                                     //
+            //    }
+			//}
+
+
+
+            public bool AnswerIsCorrect(int answ)
 			{
-				
-			}
-			private bool answerIsCorrect(int answ, int trueAnsw)
-			{
-				if (answ == trueAnsw) return true;
+				if (answ == _correct) return true;
 				else return false;
 			}
-			private bool answerInputIsCorrect(int answ)
+            public bool AnswerInputIsCorrect(int answ)
 			{
 				if (answ >= 1 && answ <= 4)
 					return true;
 				else return false;
 			}
-
+            
 
 		}
 	}

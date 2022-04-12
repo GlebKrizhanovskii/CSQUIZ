@@ -24,7 +24,7 @@ namespace ConsoleApp1
 			
 			public string info()
 			{
-				return (_log + " " + _pswd);
+				return ("Login: " + _log + " Password: " + _pswd + " Score:" + _score);
 			}
 		}
 

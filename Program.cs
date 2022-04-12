@@ -73,7 +73,7 @@ namespace ConsoleApp1
                 }
                 catch
                 {
-                    Console.WriteLine("How the fuck did you manage that?!");
+                    Console.WriteLine("How the hell did you manage that?!");
                 }
 
 
@@ -138,15 +138,26 @@ namespace ConsoleApp1
 					Console.WriteLine("tasks.xml is missing");
 				}
 			}
-			Console.WriteLine("well...");
+            else
+            {
+                string[] answrs = { "q1a1", "q1a2", "q1a3 correct", "q1a4" };
+                Task testTask = new Task("testTheme", "testQuestionText", answrs, 3);
+                tasks.Add(testTask);
 
-			
-			Task test = new Task();
+                using (FileStream fStream = new FileStream("tasks.xml", FileMode.Create))
+                {
+                    taskXmlFormat.Serialize(fStream, tasks);
 
-			test.ShowQuestion();
+                }
+                Console.WriteLine("tasks.xml created");
 
+            }
 
+            Console.WriteLine("Quiz start:");
 
+            tasks.Run(current);
+
+            Console.WriteLine(current.info());
 			Console.ReadKey();
 		}
 	}
